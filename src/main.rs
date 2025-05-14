@@ -7,6 +7,8 @@ use tokio::task;
 #[derive(Serialize, Deserialize, Debug)]
 struct Message {
     content: String,
+    timestamp: u64,
+    id: u32,
 }
 
 #[derive(Debug)]
@@ -28,7 +30,7 @@ async fn hash_server(mut rx: mpsc::Receiver<Vec<u8>>) {
             original: message.content,
             hashed: format!("{:x}", result),
         };
-        println!("Received: {:?}", hashed_message);
+        println!("Received: {}, {}, {:?}", message.id , message.timestamp, hashed_message);
     }
 }
 
@@ -42,6 +44,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Create a message
     let message = Message {
         content: "Hello, world!".to_string(),
+        timestamp: 1627847265, // Example timestamp
+        id: 1, // Example ID
     };
 
     // Serialize the message to MessagePack
