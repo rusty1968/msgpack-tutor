@@ -5,3 +5,7 @@ You can install the libmsgpack-dev package using your Linux distribution's packa
 
 sudo apt-get update
 sudo apt-get install libmsgpack-dev
+
+## For python
+pip install msgpack
+
